@@ -8,43 +8,37 @@ function convert(num) {
   let hold = []
   console.log(arr)
 
-  if (arr[1]) {
-    hold.push('and ' + arr[1] + '/100 dollars')
-  }
-
-let length = arr[0].length
-
 function ones(num) {
    switch (num) {
       case 0:
         return "zero"
         break;
       case 1:
-        return "one"
+        return "one "
         break;
       case 2:
-        return "two"
+        return "two "
         break;
       case 3:
-        return "three"
+        return "three "
         break;
       case 4:
-        return "four"
+        return "four "
         break;
       case 5:
-        return "five"
+        return "five "
         break;
       case 6:
-        return "six"
+        return "six "
         break;
       case 7:
-        return "seven"
+        return "seven "
         break;
       case 8:
-        return "eight"
+        return "eight "
         break;
       case 9:
-        return "nine"
+        return "nine "
         break;
     }
 }
@@ -52,34 +46,34 @@ function ones(num) {
 function teens(num) {
    switch (num) {
       case 10:
-        return "ten"
+        return "ten "
         break;
       case 11:
-        return "eleven"
+        return "eleven "
         break;
       case 12:
-        return "twelve"
+        return "twelve "
         break;
       case 13:
-        return "thirteen"
+        return "thirteen "
         break;
       case 14:
-        return "fourteen"
+        return "fourteen "
         break;
       case 15:
-        return "fifteen"
+        return "fifteen "
         break;
       case 16:
-        return "sixteen"
+        return "sixteen "
         break;
       case 17:
-        return "seventeen"
+        return "seventeen "
         break;
       case 18:
-        return "eighteen"
+        return "eighteen "
         break;
       case 19:
-        return "nineteen"
+        return "nineteen "
         break;
     }
 }
@@ -93,58 +87,82 @@ function tens(num) {
         return ""
         break;
       case 2:
-        return "twenty"
+        return "twenty "
         break;
       case 3:
-        return "thirty"
+        return "thirty "
         break;
       case 4:
-        return "fourty"
+        return "fourty "
         break;
       case 5:
-        return "fifty"
+        return "fifty "
         break;
       case 6:
-        return "sixty"
+        return "sixty "
         break;
       case 7:
-        return "seventy"
+        return "seventy "
         break;
       case 8:
-        return "eighty"
+        return "eighty "
         break;
       case 9:
-        return "ninety"
+        return "ninety "
         break;
     }
 }
 
+let length = arr[0].length
+
 
   for (let i = 0; i < arr[0].length; i++){
+    console.log(arr[0][i])
      switch (length) {
       case 1:
-        hold.push('and ' + str[i-1] + str[i] + '/100 dollars');
+        hold.push(ones(Number(arr[0][i])));
         length = length - 1
         break;
       case 2:
-        hold.push(String(str[i]));
-        length--
+        if (arr[0][i] === 1) {
+          hold.push(teens(Number(arr[0][i])))
+          length = length - 2;
+        } else {
+          hold.push(tens(Number(arr[0][i])))
+          length = length - 1
+        }
         break;
       case 3:
-        hold.push(String(str[i]));
-        length--
+        hold.push(ones(Number(arr[0][i])) + 'hundred ');
+        length = length - 1
         break;
-      // case 4:
-      //   day = "Thursday";
-      //   break;
-      // case 5:
-      //   day = "Friday";
-      //   break;
-      // case 6:
-      //   day = "Saturday";
+      case 4:
+        hold.push(ones(Number(arr[0][i])) + 'thousand ');
+        length = length - 1
+        break;
+      case 5:
+       if (arr[0][i] === 1) {
+          hold.push(teens(Number(arr[0][i])) + 'thousand ')
+          length = length - 2;
+        } else {
+          hold.push(tens(Number(arr[0][i])))
+          length = length - 1
+        }
+        break;
+      case 6:
+        hold.push(ones(Number(arr[0][i])) + 'hundred ');
+        length = length - 1
+        break;
     }
   }
- console.log(hold)
+
+   if (arr[1]) {
+    hold.push('and ' + arr[1] + '/100 dollars')
+  } else {
+     hold.push('dollars')
+  }
+
+ return hold.join('')
 }
 
 convert(2523.04)
