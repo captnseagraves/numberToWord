@@ -166,3 +166,5 @@ let length = arr[0].length
 }
 
 convert(2523.04)
+
+module.exports = {convert}
