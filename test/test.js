@@ -4,6 +4,18 @@ var expect = require('chai').expect;
 
 describe('numbersToWords', function() {
 
+  it('should return "Please, enter a number." if given a string.', function() {
+      expect(index.convert('hello')).to.equal("Please, enter a number.")
+  });
+
+  it('should return "Please, enter a positive integer." if given 0.', function() {
+      expect(index.convert(00000)).to.equal("Please, enter a positive integer.")
+  });
+
+  it('should return "Please, enter a positive integer." if given a negative number.', function() {
+      expect(index.convert(-100)).to.equal("Please, enter a positive integer.")
+  });
+
   it('should return "two thousand five hundred twenty three and 04/100 dollars"', function() {
       expect(index.convert(2523.04)).to.equal("two thousand five hundred twenty three and 04/100 dollars")
   });
@@ -20,14 +32,24 @@ describe('numbersToWords', function() {
     expect(index.convert(10011)).to.equal("ten thousand eleven dollars")
   });
 
+  it('should return "one billion one hundred twenty three million four hundred fifty six thousand seven hundred eighty nine and 66/100 dollars"', function() {
+    expect(index.convert(1123456789.66)).to.equal("one billion one hundred twenty three million four hundred fifty six thousand seven hundred eighty nine and 66/100 dollars")
+  });
+
+  it('should return rounded decimal place and "six hundred seventy four thousand eight hundred thirty and 32/100 dollars"', function() {
+    expect(index.convert(674830.32451)).to.equal("six hundred seventy four thousand eight hundred thirty and 32/100 dollars")
+  });
+
   it('should return "fifty cents"', function() {
     expect(index.convert(.50)).to.equal("fifty cents")
   });
 
-  it('should return "one billion two hundred thirty four million four hundred fifty six thousand seven hundred eighty nine and 66/100 dollars"', function() {
-    expect(index.convert(123456789.66)).to.equal("one billion two hundred thirty four million four hundred fifty six thousand seven hundred eighty nine and 66/100 dollars")
+  it('should return "seventy two cents"', function() {
+    expect(index.convert(.72)).to.equal("seventy two cents")
   });
 
-
+  it('should return rounded decimal and "twenty eight cents"', function() {
+    expect(index.convert(.279435)).to.equal("twenty eight cents")
+  });
 
 });

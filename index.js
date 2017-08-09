@@ -3,12 +3,15 @@
 // "Two thousand five hundred twenty-three and 04/100 dollars"
 
 function convert(num) {
+    if (typeof num !== 'number') {
+        return "Please, enter a number."
+    }
+    if (num === 0 || num < 0) {
+        return "Please, enter a positive integer."
+    }
     let str = num.toString()
     let arr = str.split('.')
     let hold = []
-    console.log('num', num)
-    console.log('str', str)
-    console.log('arr', arr)
 
     function ones(num) {
         switch (num) {
@@ -46,7 +49,6 @@ function convert(num) {
     }
 
     function teens(num) {
-        console.log('teens num', typeof num);
         switch (num) {
             case 10:
                 return "ten "
@@ -116,33 +118,49 @@ function convert(num) {
         }
     }
 
-    // returns wierd result due to JavaScript coercing .50 to 0.5 at input
-    //
-    // let length1 = arr[1].length
-    //
-    // if (arr[0] === '0') {
-    //   if (arr[1].length === 1) {
-    //     console.log('arr[1]', arr[1]);
-    //   }
-    //   for (let i = 0; i < arr[0].length; i++){
-    //     switch (length1) {
-    //       case 1:
-    //       hold.push(ones(Number(arr[1][i])) + 'cents');
-    //       length1 = length1 - 1
-    //       break;
-    //       case 2:
-    //       if (arr[1][i] === 1) {
-    //         hold.push(teens(Number(arr[1][i])) + 'cents')
-    //         length1 = length1 - 2;
-    //       } else {
-    //         hold.push(tens(Number(arr[1][i])) + 'cents')
-    //         length1 = length1 - 1
-    //       }
-    //       break;
-    //     }
-    //   }
-    //
-    // }
+    if (arr[0] === '0' && arr[1]) {
+
+        if (arr[1].length === 1) {
+            arr[1] = arr[1] + '0'
+        }
+
+        console.log(arr[1].length);
+
+        if (arr[1].length > 2) {
+          arr[1] = Math.floor(Number(arr[1]))
+          console.log('round', arr[1]);
+        }
+
+        let length1 = arr[1].length
+
+        for (let i = 0; i < arr[1].length; i++) {
+
+            switch (length1) {
+                case 1:
+                    console.log('case 1');
+                    if (arr[1][i] === '0') {
+                      hold.push(ones(Number(arr[1][i])) + 'cents');
+
+                        length1 = length1 - 1
+                        break;
+                    }
+                    hold.push(ones(Number(arr[1][i])) + 'cents');
+                    length1 = length1 - 1
+                    break;
+                case 2:
+                    console.log('case 2');
+                    if (arr[1][i] === 1) {
+                        hold.push(teens(Number(arr[1][i])) + 'cents')
+                        length1 = length1 - 2;
+                    } else {
+                        hold.push(tens(Number(arr[1][i])))
+                        length1 = length1 - 1;
+                    }
+                    break;
+            }
+        }
+
+    }
 
     let length2 = arr[0].length
 
@@ -196,22 +214,52 @@ function convert(num) {
                 break;
             case 6:
                 console.log('case 6');
+                if (arr[0][i] === '0') {
+                    length2 = length2 - 1
+                    break;
+                }
                 hold.push(ones(num1) + 'hundred ');
                 length2 = length2 - 1
                 break;
+            case 7:
+                console.log('case 7');
+                hold.push(ones(num1) + 'million ');
+                length2 = length2 - 1
+                break;
+            case 8:
+                console.log('case 8');
+                if (arr[0][i] === '1') {
+                    console.log('num2', num2);
+                    hold.push(teens(num2) + 'million ')
+                    length2 = length2 - 2;
+                    i++
+                } else {
+                    hold.push(tens(num1))
+                    length2 = length2 - 1
+                }
+                break;
+            case 9:
+                console.log('case 9');
+                hold.push(ones(num1) + 'hundred ');
+                length2 = length2 - 1
+                break;
+            case 10:
+                console.log('case 10');
+                hold.push(ones(num1) + 'billion ');
+                length2 = length2 - 1
+                break;
+                // 123456789.66
         }
     }
 
-    if (arr[1]) {
+    if (arr[1] && arr[0] !== '0') {
         hold.push('and ' + arr[1] + '/100 dollars')
-    } else {
+    } else if (!arr[1]) {
         hold.push('dollars')
     }
-    console.log(hold);
+
     return hold.join('')
 }
-
-convert(2523.04)
 
 module.exports = {
     convert
