@@ -4,14 +4,17 @@
 // "Two thousand five hundred twenty-three and 04/100 dollars"
 
 function convert(num) {
-  let arr = num.toString().split('.')
+  let str = num.toString()
+  let arr = str.split('.')
   let hold = []
-  console.log(arr)
+  console.log('num', num)
+  console.log('str', str)
+  console.log('arr', arr)
 
 function ones(num) {
    switch (num) {
       case 0:
-        return "zero"
+        return ""
         break;
       case 1:
         return "one "
@@ -44,6 +47,7 @@ function ones(num) {
 }
 
 function teens(num) {
+  console.log('teens num', typeof num);
    switch (num) {
       case 10:
         return "ten "
@@ -113,45 +117,85 @@ function tens(num) {
     }
 }
 
-let length = arr[0].length
 
+
+
+
+// returns wierd result due to JavaScript coercing .50 to 0.5 at input
+//
+// let length1 = arr[1].length
+//
+// if (arr[0] === '0') {
+//   if (arr[1].length === 1) {
+//     console.log('arr[1]', arr[1]);
+//   }
+//   for (let i = 0; i < arr[0].length; i++){
+//     switch (length1) {
+//       case 1:
+//       hold.push(ones(Number(arr[1][i])) + 'cents');
+//       length1 = length1 - 1
+//       break;
+//       case 2:
+//       if (arr[1][i] === 1) {
+//         hold.push(teens(Number(arr[1][i])) + 'cents')
+//         length1 = length1 - 2;
+//       } else {
+//         hold.push(tens(Number(arr[1][i])) + 'cents')
+//         length1 = length1 - 1
+//       }
+//       break;
+//     }
+//   }
+//
+// }
+
+let length2 = arr[0].length
 
   for (let i = 0; i < arr[0].length; i++){
-    console.log(arr[0][i])
-     switch (length) {
+    let num1 = Number(arr[0][i])
+    let num2 = Number(String(arr[0][i]) + String(arr[0][i + 1]))
+
+     switch (length2) {
       case 1:
-        hold.push(ones(Number(arr[0][i])));
-        length = length - 1
+        hold.push(ones(num1));
+        length2 = length2 - 1
         break;
       case 2:
-        if (arr[0][i] === 1) {
-          hold.push(teens(Number(arr[0][i])))
-          length = length - 2;
+      console.log('case 2');
+        if (arr[0][i] === "1") {
+          hold.push(teens(num2))
+          length2 = length2 - 2;
         } else {
-          hold.push(tens(Number(arr[0][i])))
-          length = length - 1
+          hold.push(tens(num1))
+          length2 = length2 - 1
         }
         break;
       case 3:
-        hold.push(ones(Number(arr[0][i])) + 'hundred ');
-        length = length - 1
+      if (arr[0][i] === '0') {
+        break;
+      }
+        hold.push(ones(num1) + 'hundred ');
+        length2 = length2 - 1
         break;
       case 4:
-        hold.push(ones(Number(arr[0][i])) + 'thousand ');
-        length = length - 1
+        hold.push(ones(num1) + 'thousand ');
+        length2 = length2 - 1
         break;
       case 5:
-       if (arr[0][i] === 1) {
-          hold.push(teens(Number(arr[0][i])) + 'thousand ')
-          length = length - 2;
+       if (arr[0][i] === '1') {
+           console.log('teens');
+         console.log('num2', num2);
+          hold.push(teens(num2) + 'thousand ')
+          length2 = length2 - 2;
         } else {
-          hold.push(tens(Number(arr[0][i])))
-          length = length - 1
+          console.log('tens');
+          hold.push(tens(num1))
+          length2 = length2 - 1
         }
         break;
       case 6:
-        hold.push(ones(Number(arr[0][i])) + 'hundred ');
-        length = length - 1
+        hold.push(ones(num1) + 'hundred ');
+        length2 = length2 - 1
         break;
     }
   }
