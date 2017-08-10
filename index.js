@@ -127,8 +127,10 @@ function convert(num) {
         console.log(arr[1].length);
 
         if (arr[1].length > 2) {
-          arr[1] = Math.floor(Number(arr[1]))
-          console.log('round', arr[1]);
+          arr[1] = '.' + arr[1]
+          arr[1] = Number(arr[1]).toFixed(2)
+          let newArr = String(arr[1]).split('.')
+          arr[1] = newArr[1]
         }
 
         let length1 = arr[1].length
@@ -253,6 +255,12 @@ function convert(num) {
     }
 
     if (arr[1] && arr[0] !== '0') {
+      if (arr[1].length > 2) {
+        arr[1] = '.' + arr[1]
+        arr[1] = Number(arr[1]).toFixed(2)
+        let newArr2 = String(arr[1]).split('.')
+        arr[1] = newArr2[1]
+      }
         hold.push('and ' + arr[1] + '/100 dollars')
     } else if (!arr[1]) {
         hold.push('dollars')
