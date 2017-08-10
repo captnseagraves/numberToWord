@@ -128,12 +128,12 @@ function cents(arrSub1) {
         switch (length1) {
             case 1:
                 if (arrSub1[i] === '0') {
-                    hold.push(ones(Number(arrSub1[i])));
+                    hold.push(ones(Number(arrSub1[i])))
 
                     length1 = length1 - 1
                     break;
                 }
-                hold.push(ones(Number(arrSub1[i])));
+                hold.push(ones(Number(arrSub1[i])))
                 length1 = length1 - 1
                 break;
             case 2:
@@ -160,7 +160,7 @@ function dollars(arrSub0) {
 
         switch (length2) {
             case 1:
-                hold.push(ones(num1));
+                hold.push(ones(num1))
                 length2 = length2 - 1
                 break;
             case 2:
@@ -177,11 +177,11 @@ function dollars(arrSub0) {
                     length2 = length2 - 1
                     break;
                 }
-                hold.push(ones(num1) + 'hundred ');
+                hold.push(ones(num1) + 'hundred ')
                 length2 = length2 - 1
                 break;
             case 4:
-                hold.push(ones(num1) + 'thousand ');
+                hold.push(ones(num1) + 'thousand ')
                 length2 = length2 - 1
                 break;
             case 5:
@@ -199,11 +199,11 @@ function dollars(arrSub0) {
                     length2 = length2 - 1
                     break;
                 }
-                hold.push(ones(num1) + 'hundred ');
+                hold.push(ones(num1) + 'hundred ')
                 length2 = length2 - 1
                 break;
             case 7:
-                hold.push(ones(num1) + 'million ');
+                hold.push(ones(num1) + 'million ')
                 length2 = length2 - 1
                 break;
             case 8:
@@ -217,11 +217,11 @@ function dollars(arrSub0) {
                 }
                 break;
             case 9:
-                hold.push(ones(num1) + 'hundred ');
+                hold.push(ones(num1) + 'hundred ')
                 length2 = length2 - 1
                 break;
             case 10:
-                hold.push(ones(num1) + 'billion ');
+                hold.push(ones(num1) + 'billion ')
                 length2 = length2 - 1
                 break;
         }
