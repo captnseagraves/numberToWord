@@ -1,7 +1,3 @@
-// This function assumes I will always be given an input with two spaces after a decimal
-
-// "Two thousand five hundred twenty-three and 04/100 dollars"
-
 function ones(num) {
     switch (num) {
         case 0:
@@ -106,7 +102,132 @@ function tens(num) {
             break;
     }
 }
+function round(dec) {
+    dec = '.' + dec
+    dec = Number(dec).toFixed(2)
+    let newArr = String(dec).split('.')
+    dec = newArr[1]
+    return dec
+}
 
+function cents(arrSub1) {
+    let hold = []
+
+    if (arrSub1.length === 1) {
+        arrSub1 = arrSub1 + '0'
+    }
+
+    if (arrSub1.length > 2) {
+        arrSub1 = round(arrSub1)
+    }
+
+    let length1 = arrSub1.length
+
+    for (let i = 0; i < arrSub1.length; i++) {
+
+        switch (length1) {
+            case 1:
+                if (arrSub1[i] === '0') {
+                    hold.push(ones(Number(arrSub1[i])));
+
+                    length1 = length1 - 1
+                    break;
+                }
+                hold.push(ones(Number(arrSub1[i])));
+                length1 = length1 - 1
+                break;
+            case 2:
+                if (arrSub1[i] === 1) {
+                    hold.push(teens(Number(arrSub1[i])))
+                    length1 = length1 - 2;
+                } else {
+                    hold.push(tens(Number(arrSub1[i])))
+                    length1 = length1 - 1;
+                }
+                break;
+        }
+    }
+    return hold.join('')
+}
+
+function dollars(arrSub0) {
+    let hold = []
+    let length2 = arrSub0.length
+
+    for (let i = 0; i < arrSub0.length; i++) {
+        let num1 = Number(arrSub0[i])
+        let num2 = Number(String(arrSub0[i]) + String(arrSub0[i + 1]))
+
+        switch (length2) {
+            case 1:
+                hold.push(ones(num1));
+                length2 = length2 - 1
+                break;
+            case 2:
+                if (arrSub0[i] === "1") {
+                    hold.push(teens(num2))
+                    length2 = length2 - 2;
+                } else {
+                    hold.push(tens(num1))
+                    length2 = length2 - 1
+                }
+                break;
+            case 3:
+                if (arrSub0[i] === '0') {
+                    length2 = length2 - 1
+                    break;
+                }
+                hold.push(ones(num1) + 'hundred ');
+                length2 = length2 - 1
+                break;
+            case 4:
+                hold.push(ones(num1) + 'thousand ');
+                length2 = length2 - 1
+                break;
+            case 5:
+                if (arrSub0[i] === '1') {
+                    hold.push(teens(num2) + 'thousand ')
+                    length2 = length2 - 2;
+                    i++
+                } else {
+                    hold.push(tens(num1))
+                    length2 = length2 - 1
+                }
+                break;
+            case 6:
+                if (arrSub0[i] === '0') {
+                    length2 = length2 - 1
+                    break;
+                }
+                hold.push(ones(num1) + 'hundred ');
+                length2 = length2 - 1
+                break;
+            case 7:
+                hold.push(ones(num1) + 'million ');
+                length2 = length2 - 1
+                break;
+            case 8:
+                if (arrSub0[i] === '1') {
+                    hold.push(teens(num2) + 'million ')
+                    length2 = length2 - 2;
+                    i++
+                } else {
+                    hold.push(tens(num1))
+                    length2 = length2 - 1
+                }
+                break;
+            case 9:
+                hold.push(ones(num1) + 'hundred ');
+                length2 = length2 - 1
+                break;
+            case 10:
+                hold.push(ones(num1) + 'billion ');
+                length2 = length2 - 1
+                break;
+        }
+    }
+    return hold.join('')
+}
 
 function convert(num) {
 
@@ -122,155 +243,16 @@ function convert(num) {
     let arr = str.split('.')
     let hold = []
 
-
     if (arr[0] === '0' && arr[1]) {
-
-        if (arr[1].length === 1) {
-            arr[1] = arr[1] + '0'
-        }
-
-        console.log(arr[1].length);
-
+        hold.push(cents(arr[1]) + 'cents')
+    } else if (arr[0] !== '0' && arr[1]) {
         if (arr[1].length > 2) {
-            arr[1] = '.' + arr[1]
-            arr[1] = Number(arr[1]).toFixed(2)
-            let newArr = String(arr[1]).split('.')
-            arr[1] = newArr[1]
+            arr[1] = round(arr[1])
         }
-
-        let length1 = arr[1].length
-
-        for (let i = 0; i < arr[1].length; i++) {
-
-            switch (length1) {
-                case 1:
-                    console.log('case 1');
-                    if (arr[1][i] === '0') {
-                        hold.push(ones(Number(arr[1][i])) + 'cents');
-
-                        length1 = length1 - 1
-                        break;
-                    }
-                    hold.push(ones(Number(arr[1][i])) + 'cents');
-                    length1 = length1 - 1
-                    break;
-                case 2:
-                    console.log('case 2');
-                    if (arr[1][i] === 1) {
-                        hold.push(teens(Number(arr[1][i])) + 'cents')
-                        length1 = length1 - 2;
-                    } else {
-                        hold.push(tens(Number(arr[1][i])))
-                        length1 = length1 - 1;
-                    }
-                    break;
-            }
-        }
-
-    }
-
-    let length2 = arr[0].length
-
-    for (let i = 0; i < arr[0].length; i++) {
-        let num1 = Number(arr[0][i])
-        let num2 = Number(String(arr[0][i]) + String(arr[0][i + 1]))
-        console.log('arr[0][i]', arr[0][i]);
-        switch (length2) {
-            case 1:
-                console.log('case 1');
-                hold.push(ones(num1));
-                length2 = length2 - 1
-                break;
-            case 2:
-                console.log('case 2');
-                if (arr[0][i] === "1") {
-                    console.log('teens');
-                    hold.push(teens(num2))
-                    length2 = length2 - 2;
-                } else {
-                    console.log('tens');
-                    hold.push(tens(num1))
-                    length2 = length2 - 1
-                }
-                break;
-            case 3:
-                console.log('case 3');
-                if (arr[0][i] === '0') {
-                    length2 = length2 - 1
-                    break;
-                }
-                hold.push(ones(num1) + 'hundred ');
-                length2 = length2 - 1
-                break;
-            case 4:
-                console.log('case 4');
-                hold.push(ones(num1) + 'thousand ');
-                length2 = length2 - 1
-                break;
-            case 5:
-                console.log('case 5');
-                if (arr[0][i] === '1') {
-                    console.log('num2', num2);
-                    hold.push(teens(num2) + 'thousand ')
-                    length2 = length2 - 2;
-                    i++
-                } else {
-                    hold.push(tens(num1))
-                    length2 = length2 - 1
-                }
-                break;
-            case 6:
-                console.log('case 6');
-                if (arr[0][i] === '0') {
-                    length2 = length2 - 1
-                    break;
-                }
-                hold.push(ones(num1) + 'hundred ');
-                length2 = length2 - 1
-                break;
-            case 7:
-                console.log('case 7');
-                hold.push(ones(num1) + 'million ');
-                length2 = length2 - 1
-                break;
-            case 8:
-                console.log('case 8');
-                if (arr[0][i] === '1') {
-                    console.log('num2', num2);
-                    hold.push(teens(num2) + 'million ')
-                    length2 = length2 - 2;
-                    i++
-                } else {
-                    hold.push(tens(num1))
-                    length2 = length2 - 1
-                }
-                break;
-            case 9:
-                console.log('case 9');
-                hold.push(ones(num1) + 'hundred ');
-                length2 = length2 - 1
-                break;
-            case 10:
-                console.log('case 10');
-                hold.push(ones(num1) + 'billion ');
-                length2 = length2 - 1
-                break;
-                // 123456789.66
-        }
-    }
-
-    if (arr[1] && arr[0] !== '0') {
-        if (arr[1].length > 2) {
-            arr[1] = '.' + arr[1]
-            arr[1] = Number(arr[1]).toFixed(2)
-            let newArr2 = String(arr[1]).split('.')
-            arr[1] = newArr2[1]
-        }
-        hold.push('and ' + arr[1] + '/100 dollars')
+        hold.push(dollars(arr[0]) + 'and ' + arr[1] + '/100 dollars')
     } else if (!arr[1]) {
-        hold.push('dollars')
+        hold.push(dollars(arr[0]) + 'dollars')
     }
-
     return hold.join('')
 }
 

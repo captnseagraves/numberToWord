@@ -36,7 +36,7 @@ describe('numbersToWords', function() {
     expect(index.convert(1123456789.66)).to.equal("one billion one hundred twenty three million four hundred fifty six thousand seven hundred eighty nine and 66/100 dollars")
   });
 
-  it('should return rounded decimal place and "six hundred seventy four thousand eight hundred thirty and 32/100 dollars"', function() {
+  it('should round decimal and return "six hundred seventy four thousand eight hundred thirty and 32/100 dollars"', function() {
     expect(index.convert(674830.32451)).to.equal("six hundred seventy four thousand eight hundred thirty and 32/100 dollars")
   });
 
@@ -48,7 +48,7 @@ describe('numbersToWords', function() {
     expect(index.convert(.72)).to.equal("seventy two cents")
   });
 
-  it('should return rounded decimal and "twenty eight cents"', function() {
+  it('should round decimal and return "twenty eight cents"', function() {
     expect(index.convert(.279435)).to.equal("twenty eight cents")
   });
 
