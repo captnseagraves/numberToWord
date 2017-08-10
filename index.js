@@ -2,121 +2,126 @@
 
 // "Two thousand five hundred twenty-three and 04/100 dollars"
 
+function ones(num) {
+    switch (num) {
+        case 0:
+            return ""
+            break;
+        case 1:
+            return "one "
+            break;
+        case 2:
+            return "two "
+            break;
+        case 3:
+            return "three "
+            break;
+        case 4:
+            return "four "
+            break;
+        case 5:
+            return "five "
+            break;
+        case 6:
+            return "six "
+            break;
+        case 7:
+            return "seven "
+            break;
+        case 8:
+            return "eight "
+            break;
+        case 9:
+            return "nine "
+            break;
+    }
+}
+
+function teens(num) {
+    switch (num) {
+        case 10:
+            return "ten "
+            break;
+        case 11:
+            return "eleven "
+            break;
+        case 12:
+            return "twelve "
+            break;
+        case 13:
+            return "thirteen "
+            break;
+        case 14:
+            return "fourteen "
+            break;
+        case 15:
+            return "fifteen "
+            break;
+        case 16:
+            return "sixteen "
+            break;
+        case 17:
+            return "seventeen "
+            break;
+        case 18:
+            return "eighteen "
+            break;
+        case 19:
+            return "nineteen "
+            break;
+    }
+}
+
+function tens(num) {
+    switch (num) {
+        case 0:
+            return ""
+            break;
+        case 1:
+            return ""
+            break;
+        case 2:
+            return "twenty "
+            break;
+        case 3:
+            return "thirty "
+            break;
+        case 4:
+            return "fourty "
+            break;
+        case 5:
+            return "fifty "
+            break;
+        case 6:
+            return "sixty "
+            break;
+        case 7:
+            return "seventy "
+            break;
+        case 8:
+            return "eighty "
+            break;
+        case 9:
+            return "ninety "
+            break;
+    }
+}
+
+
 function convert(num) {
+
     if (typeof num !== 'number') {
         return "Please, enter a number."
     }
+
     if (num === 0 || num < 0) {
         return "Please, enter a positive integer."
     }
+
     let str = num.toString()
     let arr = str.split('.')
     let hold = []
 
-    function ones(num) {
-        switch (num) {
-            case 0:
-                return ""
-                break;
-            case 1:
-                return "one "
-                break;
-            case 2:
-                return "two "
-                break;
-            case 3:
-                return "three "
-                break;
-            case 4:
-                return "four "
-                break;
-            case 5:
-                return "five "
-                break;
-            case 6:
-                return "six "
-                break;
-            case 7:
-                return "seven "
-                break;
-            case 8:
-                return "eight "
-                break;
-            case 9:
-                return "nine "
-                break;
-        }
-    }
-
-    function teens(num) {
-        switch (num) {
-            case 10:
-                return "ten "
-                break;
-            case 11:
-                return "eleven "
-                break;
-            case 12:
-                return "twelve "
-                break;
-            case 13:
-                return "thirteen "
-                break;
-            case 14:
-                return "fourteen "
-                break;
-            case 15:
-                return "fifteen "
-                break;
-            case 16:
-                return "sixteen "
-                break;
-            case 17:
-                return "seventeen "
-                break;
-            case 18:
-                return "eighteen "
-                break;
-            case 19:
-                return "nineteen "
-                break;
-        }
-    }
-
-    function tens(num) {
-        switch (num) {
-            case 0:
-                return ""
-                break;
-            case 1:
-                return ""
-                break;
-            case 2:
-                return "twenty "
-                break;
-            case 3:
-                return "thirty "
-                break;
-            case 4:
-                return "fourty "
-                break;
-            case 5:
-                return "fifty "
-                break;
-            case 6:
-                return "sixty "
-                break;
-            case 7:
-                return "seventy "
-                break;
-            case 8:
-                return "eighty "
-                break;
-            case 9:
-                return "ninety "
-                break;
-        }
-    }
 
     if (arr[0] === '0' && arr[1]) {
 
@@ -127,10 +132,10 @@ function convert(num) {
         console.log(arr[1].length);
 
         if (arr[1].length > 2) {
-          arr[1] = '.' + arr[1]
-          arr[1] = Number(arr[1]).toFixed(2)
-          let newArr = String(arr[1]).split('.')
-          arr[1] = newArr[1]
+            arr[1] = '.' + arr[1]
+            arr[1] = Number(arr[1]).toFixed(2)
+            let newArr = String(arr[1]).split('.')
+            arr[1] = newArr[1]
         }
 
         let length1 = arr[1].length
@@ -141,7 +146,7 @@ function convert(num) {
                 case 1:
                     console.log('case 1');
                     if (arr[1][i] === '0') {
-                      hold.push(ones(Number(arr[1][i])) + 'cents');
+                        hold.push(ones(Number(arr[1][i])) + 'cents');
 
                         length1 = length1 - 1
                         break;
@@ -255,12 +260,12 @@ function convert(num) {
     }
 
     if (arr[1] && arr[0] !== '0') {
-      if (arr[1].length > 2) {
-        arr[1] = '.' + arr[1]
-        arr[1] = Number(arr[1]).toFixed(2)
-        let newArr2 = String(arr[1]).split('.')
-        arr[1] = newArr2[1]
-      }
+        if (arr[1].length > 2) {
+            arr[1] = '.' + arr[1]
+            arr[1] = Number(arr[1]).toFixed(2)
+            let newArr2 = String(arr[1]).split('.')
+            arr[1] = newArr2[1]
+        }
         hold.push('and ' + arr[1] + '/100 dollars')
     } else if (!arr[1]) {
         hold.push('dollars')
