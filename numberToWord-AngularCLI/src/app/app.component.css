@@ -12,4 +12,12 @@
 
 .dollarInput {
   text-align: center;
+  margin: auto;
+}
+
+h1 {
+  text-align: center;
+
+  margin: auto;
+  margin-top: 5vmin;
 }

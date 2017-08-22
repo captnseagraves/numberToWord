@@ -2,25 +2,28 @@
 
   <div class="header" fxLayout="row" fxLayoutAlign="space-between center">
 
-    <h1>
+    <h1 fxFlexAlign="center">
       {{title}}
     </h1>
 
   </div>
 
+  <div class="intro">
+    <h1>
+      Writing a check?
+       Give us an amount
+        and we'll write it out.
+    </h1>
+  </div>
+
   <div fxLayout="row">
 
-    <div class="left" fxFlex="20">
-  Side bar
-    </div>
-
-    <div class="right" fxFlex>
       <div class="dollarInput">
         <md-input-container>
           <input mdInput placeholder="Dollar Amount" value="0.00">
         </md-input-container>
       </div>
-    </div>
+
 
   </div>
 </div>
