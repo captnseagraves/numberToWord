@@ -1,9 +1,13 @@
 import { Component } from '@angular/core';
-// import '../../../index.js'
+// import { convert } from '../../../index.js'
 
 // declare var convert: any;
 
 // console.log(convert(111))
+
+declare var convert: any;
+
+console.log(convert(123))
 
 @Component({
   selector: 'app-root',
@@ -12,4 +16,6 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Checkify';
+  convert = convert;
+  Number = Number;
 }

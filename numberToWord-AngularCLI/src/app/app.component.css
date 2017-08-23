@@ -30,6 +30,16 @@ h1 {
   letter-spacing: 10px;
 }
 
+h3 {
+  text-align: center;
+  margin: auto;
+  text-shadow: 2px 2px #264653;
+  color: #E9C46A;
+  font-family: 'Lobster';
+  font-size: 7vmin;
+  letter-spacing: 10px;
+}
+
 .container {
   height: 100vmax;
 }

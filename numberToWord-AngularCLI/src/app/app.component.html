@@ -13,25 +13,27 @@
   </div>
 
   <div class="intro">
-    <h1>
+    <h3>
       Writing a check?
        Give us an amount
         and we'll spell it out.
-    </h1>
+    </h3>
   </div>
 
   <div fxLayout="row" class="inputRow">
 
       <div class="dollarInput">
         <md-input-container>
-          <input mdInput placeholder="Dollar Amount" value="0.00" [(ngModel)]="name" (ngModelChange)="name=convert(name)">
+          <input mdInput placeholder="Dollar Amount" value="0.00" [ngModel]="amount" (ngModelChange)="amount=convert(Number(amount))">
         </md-input-container>
       </div>
 
 </div>
 
 <div>
-  <h1>{{name}} details!</h1>
+  <h3>{{amount}} details!</h3>
+  <!-- <h3>{{convert(Number(amount))}} details!</h3> -->
+
 </div>
 
   </div>
