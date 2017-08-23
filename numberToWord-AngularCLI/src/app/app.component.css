@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css?family=Lobster');
+
+
 .header {
   background-color: lightyellow;
 }
@@ -17,7 +20,23 @@
 
 h1 {
   text-align: center;
-
   margin: auto;
   margin-top: 5vmin;
+  background-color: #264653;
+  color: #E9C46A;
+  font-family: 'Lobster';
+  font-size: 11vmin;
+  letter-spacing: 10px;
+}
+
+#con4 {
+    background-color: #264653;
+    color: #E9C46A;
+
+}
+
+.modern {
+    font-family: 'Lobster';
+    font-size: 11vmin;
+    letter-spacing: 10px;
 }

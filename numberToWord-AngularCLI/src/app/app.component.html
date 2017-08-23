@@ -12,7 +12,7 @@
     <h1>
       Writing a check?
        Give us an amount
-        and we'll write it out.
+        and we'll spell it out.
     </h1>
   </div>
 
@@ -20,7 +20,7 @@
 
       <div class="dollarInput">
         <md-input-container>
-          <input mdInput placeholder="Dollar Amount" value="0.00" [(ngModel)]="name">
+          <input mdInput placeholder="Dollar Amount" value="0.00" [(ngModel)]="name" (ngModelChange)="name=convert(name)">
         </md-input-container>
       </div>
 

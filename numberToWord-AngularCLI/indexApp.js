@@ -1,3 +1,5 @@
+
+
 function ones(num) {
     switch (num) {
         case 0:
@@ -256,6 +258,6 @@ function convert(num) {
     return hold.join('')
 }
 
-module.exports = {
-    convert
-}
+// module.exports = {
+//   convert
+// }

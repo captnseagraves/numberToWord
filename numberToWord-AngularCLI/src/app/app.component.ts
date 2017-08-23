@@ -1,4 +1,9 @@
 import { Component } from '@angular/core';
+// import '../../../index.js'
+
+// declare var convert: any;
+
+// console.log(convert(111))
 
 @Component({
   selector: 'app-root',

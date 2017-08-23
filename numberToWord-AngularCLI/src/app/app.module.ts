@@ -3,10 +3,9 @@ import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { FormsModule }   from '@angular/forms'
-import './indexApp.js'
+// import { convert } from '../../../index.js'
 
-declare var convert: any;
-
+// console.log(convert(234))
 
 //import MaterialModule
 import { MaterialModule } from '@angular/material';
