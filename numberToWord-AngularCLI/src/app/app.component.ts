@@ -18,4 +18,5 @@ export class AppComponent {
   title = 'Checkify';
   convert = convert;
   Number = Number;
+  newAmount = 'Please, enter a number.'
 }

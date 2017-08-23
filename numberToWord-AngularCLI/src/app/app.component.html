@@ -24,16 +24,14 @@
 
       <div class="dollarInput">
         <md-input-container>
-          <input mdInput placeholder="Dollar Amount" value="0.00" [ngModel]="amount" (ngModelChange)="amount=convert(Number(amount))">
+          <input mdInput placeholder="Dollar Amount" value="0.00" [(ngModel)]="amount" (ngModelChange)="newAmount=convert(Number(amount))">
         </md-input-container>
       </div>
 
 </div>
 
 <div>
-  <h3>{{amount}} details!</h3>
-  <!-- <h3>{{convert(Number(amount))}} details!</h3> -->
-
+  <h3>{{newAmount}}</h3>
 </div>
 
   </div>
